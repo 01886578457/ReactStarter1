@@ -14,20 +14,29 @@ class App extends React.Component {
         );
     }
 
-    render() {
+    renderContent() {
         const { state } = this;
         if (state.errMsg && !this.state.lat && !this.state.long) {
-            return (
-                <div>Err: {state.errMsg}</div>
+            return (<div>Err: {state.errMsg}</div>
             )
-        } 
-        if(!state.errMsg && this.state.lat && this.state.long) {
+        }
+        if (!state.errMsg && this.state.lat && this.state.long) {
             return (
-                <SeasonDisplay Lat={state.lat} Long={state.long}/>
+                <SeasonDisplay Lat={state.lat} Long={state.long} />
             )
         }
 
-        return (<Spinner message="Accessed locaition loading..."/>)
+        return (
+            <Spinner message="Accessed locaition loading..." />
+        )
+    }
+
+    render() {
+        return (
+            <div className="border red">
+                {this.renderContent()}
+            </div>
+        )
     }
 }
 
